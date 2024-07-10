@@ -1,0 +1,58 @@
+
+
+
+<div class="card flex justify-content-center">
+  <p-dropdown 
+      [options]="users" 
+      [(ngModel)]="selectedCity" 
+      optionLabel="name"
+      placeholder="Select a User">
+  </p-dropdown>
+</div> 
+
+
+<div>
+  <h2>Add Permissions</h2>
+  <label>User: </label>
+
+  <br><br>
+  <label>Permissions: </label>
+  <div *ngFor="let permission of availablePermissions">
+    <label>
+      <input type="checkbox" (change)="togglePermission(permission.name)">
+      {{ permission.name }}
+    </label>
+  </div>
+  <br><br>
+  <button (click)="addPermissions()">Add Permissions</button><div class="select-wrapper">
+    <select [(ngModel)]="userId" required class="form-control">
+      <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+    </select>
+  </div>
+  
+</div>
+
+
+<div class="card flex justify-content-center">
+  <p-dropdown 
+      [options]="countries"
+      [(ngModel)]="selectedCountry"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Select a Country">
+          <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                  
+                  <div>{{ selectedOption.name }}</div>
+              </div>
+          </ng-template>
+          <ng-template let-country pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                
+                  <div>{{ country.name }}</div>
+              </div>
+          </ng-template>
+  </p-dropdown>
+</div>
